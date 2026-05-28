@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-raleway: 'Raleway', Arial, sans-serif;
+  --color-oro: #c9a96e;
+  --color-carbon: #0a0a0a;
+  --color-hueso: #f0ebe3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #f0ebe3;
+  font-family: var(--font-raleway), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a96e;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e8c97a;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(201, 169, 110, 0.3);
+  color: #f0ebe3;
+}
+
+/* Gold text gradient utility */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #c9a96e 0%, #e8c97a 50%, #c9a96e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold-animate {
+  background: linear-gradient(135deg, #c9a96e 0%, #e8c97a 40%, #f5d78e 60%, #c9a96e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+/* Reduce glass blur on mobile — backdrop-filter is very GPU-heavy at high values */
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .glass-dark {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Divider */
+.divider-gold {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+}
+
+/* Button gold */
+.btn-gold {
+  background: linear-gradient(135deg, #c9a96e, #8b6914);
+  color: #0a0a0a;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-raleway);
+  font-size: 0.75rem;
+}
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #e8c97a, #c9a96e);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-gold:hover::before {
+  opacity: 1;
+}
+.btn-gold span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Outline button */
+.btn-outline {
+  border: 1px solid rgba(201, 169, 110, 0.6);
+  color: #c9a96e;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 13px 36px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  font-family: var(--font-raleway);
+  font-size: 0.75rem;
+}
+.btn-outline:hover {
+  background: rgba(201, 169, 110, 0.1);
+  border-color: #c9a96e;
+}
+
+/* Section tag */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-raleway);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c9a96e;
+}
+.section-tag::before,
+.section-tag::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: #c9a96e;
+}
+
+/* Input styles */
+.input-gold {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 2px;
+  padding: 14px 18px;
+  color: #f0ebe3;
+  font-family: var(--font-raleway);
+  font-size: 0.875rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+.input-gold::placeholder {
+  color: #5a534c;
+}
+.input-gold:focus {
+  border-color: rgba(201, 169, 110, 0.6);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.08);
+}
+
+/* Lazy image placeholder */
+.img-placeholder {
+  background: linear-gradient(
+    110deg,
+    #141414 8%,
+    #1c1c1c 18%,
+    #141414 33%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* Section spacing */
+.section-padding {
+  padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 64px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    padding: 52px 0;
+  }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth touch scrolling on iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each section forms its own stacking context — avoids cross-section compositing */
+section {
+  isolation: isolate;
+}
+
+/* Star rating */
+.stars {
+  color: #f5a623;
+  letter-spacing: 2px;
+}
+
+/* Noise texture overlay for premium feel */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Responsive container */
+.container-custom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container-custom {
+    padding: 0 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-custom {
+    padding: 0 80px;
+  }
+}
